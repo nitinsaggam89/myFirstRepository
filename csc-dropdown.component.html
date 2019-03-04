@@ -1,0 +1,24 @@
+<form class="example-form">
+  <label>Select Country: </label>
+  <mat-form-field class="example-full-width">    
+    <input type="text" aria-label="Number" matInput [formControl]="countryCtrl" [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let option of filterCountries | async" [value]="option.country" (onSelectionChange) = "selectedCountry($event, option.id)">
+        {{option.country}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  <br/>
+  <label>Select State: </label>
+  <mat-form-field *ngIf="countrySelected" class="example-full-width">
+    <input type="text" aria-label="Number" matInput [formControl]="stateCtrl" [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let option of filterStates | async" [value]="option.state">
+        {{option.state}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form> 
+<!--<form>
+  
+</form>-->
